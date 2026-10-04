@@ -1,0 +1,425 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #080812;
+  --panel: #111120;
+  --text: #ffffff;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ENCABEZADO */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 24px 30px 18px;
+  background: #0c0c19;
+  border-bottom: 1px solid #29293c;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 54px);
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.brand h1 span {
+  color: white;
+}
+
+.brand h1 b {
+  color: #ff4f9a;
+}
+
+.brand p {
+  margin: 6px 0 0;
+  color: #aaaabe;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* BOTONES */
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+  max-width: 800px;
+}
+
+.tool {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 16px;
+  color: #111;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.tool:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.tool:active {
+  transform: scale(0.96);
+}
+
+.tool:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* COLORES DE LOS BOTONES */
+
+.pink {
+  background: #ff4f9a;
+}
+
+.orange {
+  background: #ff9b4a;
+}
+
+.yellow {
+  background: #f5d95b;
+}
+
+.green {
+  background: #75e39a;
+}
+
+.purple {
+  background: #b79cff;
+}
+
+.blue {
+  background: #66baff;
+}
+
+.red {
+  background: #ff6868;
+}
+
+/* ÁREA TÁCTIL */
+
+.touch-area {
+  position: relative;
+  height: calc(100vh - 190px);
+  min-height: 430px;
+  margin: 24px 30px 30px;
+  overflow: hidden;
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      125deg,
+      #4c24a8,
+      #bb238f 45%,
+      #ff6b35
+    );
+
+  box-shadow: 0 20px 70px #0008;
+
+  cursor: default;
+  touch-action: none;
+  user-select: none;
+}
+
+.touch-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      #ffffff25,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      #ffd36b25,
+      transparent 30%
+    );
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* TEXTO CENTRAL */
+
+#emptyMessage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+
+  color: white;
+  font-size: clamp(18px, 2vw, 30px);
+  font-weight: 900;
+  letter-spacing: 3px;
+
+  text-shadow: 0 3px 15px #0005;
+  pointer-events: none;
+}
+
+/* MENÚ */
+
+.menu {
+  position: fixed;
+  z-index: 20;
+  top: 105px;
+  right: 25px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  width: max-content;
+  max-width: min(390px, calc(100vw - 32px));
+  max-height: min(68vh, 560px);
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  padding: 14px;
+  border: 1px solid #ffffff2b;
+  border-radius: 20px;
+
+  background: #171727f5;
+  box-shadow: 0 20px 60px #0008;
+}
+
+.menu.hidden {
+  display: none;
+}
+
+.menu button {
+  border: 1px solid #ffffff22;
+  border-radius: 12px;
+  padding: 10px 13px;
+
+  background: #292942;
+  color: white;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition:
+    background 0.12s ease,
+    transform 0.12s ease;
+}
+
+.menu button:hover {
+  background: #454566;
+  transform: translateY(-1px);
+}
+
+.menu button.active {
+  background: #75e39a;
+  color: #111;
+}
+
+.menu input[type="color"] {
+  width: 44px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* SELECTOR DE COLOR */
+
+.color-picker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  width: 100%;
+  padding: 9px 11px;
+
+  border: 1px solid #ffffff22;
+  border-radius: 12px;
+
+  background: #292942;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.color-picker-row input[type="color"] {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 34px;
+  padding: 0;
+  border-radius: 8px;
+}
+
+/* SELECTOR DE EMOJIS */
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(32px, 1fr));
+  gap: 6px;
+  width: min(100%, 520px);
+}
+
+.emoji-option {
+  display: grid;
+  place-items: center;
+
+  min-width: 0;
+  min-height: 38px;
+  padding: 4px;
+
+  border: 1px solid #ffffff18;
+  border-radius: 10px;
+
+  background: #292942;
+  color: white;
+
+  font-family:
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Noto Color Emoji",
+    sans-serif;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  transition:
+    background 0.12s ease,
+    transform 0.12s ease;
+}
+
+.emoji-option:hover {
+  transform: scale(1.05);
+  background: #454566;
+}
+
+.emoji-option.active {
+  background: #75e39a;
+  border-color: #75e39a;
+}
+
+/* BARRA DE DESPLAZAMIENTO */
+
+.menu::-webkit-scrollbar {
+  width: 7px;
+}
+
+.menu::-webkit-scrollbar-track {
+  background: #111120;
+  border-radius: 10px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: #555574;
+  border-radius: 10px;
+}
+
+.menu::-webkit-scrollbar-thumb:hover {
+  background: #77779a;
+}
+
+/* CELULARES */
+
+@media (max-width: 700px) {
+
+  .topbar {
+    padding: 18px;
+  }
+
+  .brand h1 {
+    font-size: 34px;
+  }
+
+  .brand p {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .toolbar {
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+
+  .tool {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .touch-area {
+    height: calc(100vh - 250px);
+    min-height: 380px;
+    margin: 16px;
+    border-radius: 20px;
+  }
+
+  .menu {
+    top: 150px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    max-width: none;
+  }
+
+  .emoji-grid {
+    grid-template-columns: repeat(6, minmax(30px, 1fr));
+  }
+}
+
+/* PANTALLAS PEQUEÑAS */
+
+@media (max-width: 420px) {
+
+  .brand h1 {
+    font-size: 28px;
+  }
+
+  .toolbar {
+    gap: 6px;
+  }
+
+  .tool {
+    padding: 9px 10px;
+    font-size: 11px;
+  }
+
+  .touch-area {
+    min-height: 330px;
+  }
+
+  .emoji-option {
+    font-size: 20px;
+    min-height: 34px;
+  }
+}

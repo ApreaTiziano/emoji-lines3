@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Emoji Lines</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <div class="brand">
+      <h1>
+        <span>EMOJI</span>
+        <b>LINES</b>
+      </h1>
+
+      <p>DEJÁ UNA HUELLA CON TU MOVIMIENTO</p>
+    </div>
+
+    <nav class="toolbar">
+
+      <button id="modeButton" class="tool pink">
+        Modo
+      </button>
+
+      <button id="frequencyButton" class="tool orange">
+        Frecuencia
+      </button>
+
+      <button id="backgroundButton" class="tool yellow">
+        Fondo
+      </button>
+
+      <button id="emojiButton" class="tool green">
+        Personalizar emojis
+      </button>
+
+      <button id="sizeButton" class="tool purple">
+        Tamaño
+      </button>
+
+      <button id="saveButton" class="tool blue">
+        Guardar
+      </button>
+
+      <button id="clearButton" class="tool red">
+        Limpiar
+      </button>
+
+    </nav>
+
+  </header>
+
+  <main>
+
+    <section id="touchArea" class="touch-area">
+
+      <canvas id="canvas"></canvas>
+
+      <div id="emptyMessage">
+        LUGAR TÁCTIL.
+      </div>
+
+    </section>
+
+    <div id="menu" class="menu hidden"></div>
+
+    <input
+      id="photoInput"
+      type="file"
+      accept="image/*"
+      hidden
+    >
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
